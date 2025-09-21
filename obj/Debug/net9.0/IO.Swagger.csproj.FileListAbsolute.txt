@@ -1,0 +1,4 @@
+C:\Users\משתמש זה\Downloads\aspnetcore-server-generated (1)\obj\Debug\net9.0\IO.Swagger.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\משתמש זה\Downloads\aspnetcore-server-generated (1)\obj\Debug\net9.0\IO.Swagger.AssemblyInfoInputs.cache
+C:\Users\משתמש זה\Downloads\aspnetcore-server-generated (1)\obj\Debug\net9.0\IO.Swagger.AssemblyInfo.cs
+C:\Users\משתמש זה\Downloads\aspnetcore-server-generated (1)\obj\Debug\net9.0\IO.Swagger.csproj.CoreCompileInputs.cache
