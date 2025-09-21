@@ -1,5 +1,5 @@
-# IO.Swagger - ASP.NET Core 2.0 Server
-
+# CalculatorProject
+DNA Project for Bank Mizrahi
 API for performing simple arithmetic operations (add, subtract, multiply, divide). 
 
 ## Run
@@ -23,3 +23,5 @@ cd src/IO.Swagger
 docker build -t io.swagger .
 docker run -p 5000:5000 io.swagger
 ```
+
+
