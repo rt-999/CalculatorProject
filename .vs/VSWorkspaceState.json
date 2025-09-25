@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\IO.Swagger",
+    "\\src\\IO.Swagger\\Controllers",
+    "\\src\\IO.Swagger\\Filters",
+    "\\src\\IO.Swagger\\Models"
+  ],
+  "PreviewInSolutionExplorer": false
+}

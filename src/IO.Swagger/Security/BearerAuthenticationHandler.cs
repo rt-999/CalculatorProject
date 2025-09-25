@@ -22,8 +22,7 @@ namespace IO.Swagger.Security
         /// </summary>
         public const string SchemeName = "Bearer";
 
-        // כאן ניתן לשים מפתח סימטרי לדוגמא, או לקבל אותו דרך DI
-        private readonly byte[] key = Encoding.ASCII.GetBytes("changeme_secret_key_123!");
+        private readonly byte[] key = Encoding.ASCII.GetBytes("a-string-secret-at-least-256-bits-long");
 
         public BearerAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
@@ -43,7 +42,7 @@ namespace IO.Swagger.Security
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
-                var token = authHeader.Parameter; // הפקת ה-token מתוך ההדר
+                var token = authHeader.Parameter; 
 
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var validationParameters = new TokenValidationParameters

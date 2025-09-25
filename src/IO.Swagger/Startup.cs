@@ -99,9 +99,9 @@ namespace IO.Swagger
 
                 services.AddMemoryCache();
 
-                services.AddHttpClient<CacheService>();
+                services.AddHttpClient<CalculatorOrCacheService>();
 
-                services.AddScoped<CacheService>();
+                services.AddScoped<CalculatorOrCacheService>();
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace IO.Swagger
             //TODO: Uncomment this if you need wwwroot folder
             // app.UseStaticFiles();
 
-            app.UseAuthentication(); // חייב לפני Authorization
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
             app.UseSwagger();

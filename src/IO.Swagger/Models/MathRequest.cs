@@ -67,7 +67,7 @@ namespace IO.Swagger.Models
         [Required]
 
         [DataMember(Name="x")]
-        public double X { get; set; }
+        public decimal X { get; set; }
 
         /// <summary>
         /// Gets or Sets Y
@@ -75,7 +75,7 @@ namespace IO.Swagger.Models
         [Required]
 
         [DataMember(Name="y")]
-        public double Y { get; set; }
+        public decimal Y { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -4,57 +4,65 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 using IO.Swagger.Services;
+using IO.Swagger.Models;
 using Microsoft.Extensions.Logging;
+using static IO.Swagger.Models.MathRequest;
+using System.Threading.Tasks;
 
 
 namespace IO.Swagger.Tests
 {
     public class CalculatorServiceTests
     {
-        private readonly CacheService _cacheService;
+        private readonly CalculatorOrCacheService _calculatorOrCacheService;
 
         public CalculatorServiceTests()
         {
-            _cacheService = new CacheService(
+            _calculatorOrCacheService = new CalculatorOrCacheService(
                 new MemoryCache(new MemoryCacheOptions()),
-                NullLogger<CacheService>.Instance,
+                NullLogger<CalculatorOrCacheService>.Instance,
                 new HttpClient()
             );
- 
+
         }
 
         [Fact]
-        public void Add_ShouldReturnCorrectSum()
+        public async Task Add_ShouldReturnCorrectSum()
         {
-            int result = _cacheService.Add(3, 5);
-            Assert.Equal(8, result);
+            MathRequest request = new MathRequest() { Operation = OperationEnum.AddEnum, X = 3, Y = 5 };
+            MathResponse mathResponse = await _calculatorOrCacheService.AddAsync(request);
+            Assert.Equal(8, mathResponse.Result);
         }
 
         [Fact]
-        public void Subtract_ShouldReturnCorrectDifference()
+        public async Task Subtract_ShouldReturnCorrectDifference()
         {
-            int result = _cacheService.Subtract(10, 4);
-            Assert.Equal(6, result);
+            MathRequest request = new MathRequest() { Operation = OperationEnum.SubtractEnum, X = 10, Y = 4 };
+            MathResponse mathResponse = await _calculatorOrCacheService.SubtractAsync(request);
+            Assert.Equal(6, mathResponse.Result);
         }
 
         [Fact]
-        public void Multiply_ShouldReturnCorrectProduct()
+        public async Task Multiply_ShouldReturnCorrectProduct()
         {
-            int result = _cacheService.Multiply(3, 4);
-            Assert.Equal(12, result);
+            MathRequest request = new MathRequest() { Operation = OperationEnum.MultiplyEnum, X = 3, Y = 4 };
+            MathResponse mathResponse = await _calculatorOrCacheService.MultiplyAsync(request);
+            Assert.Equal(12, mathResponse.Result);
         }
 
         [Fact]
-        public void Divide_ShouldReturnCorrectQuotient()
+        public async Task Divide_ShouldReturnCorrectQuotient()
         {
-            int result = _cacheService.Divide(12, 3);
-            Assert.Equal(4, result);
+            MathRequest request = new MathRequest() { Operation = OperationEnum.DivideEnum, X = 12, Y = 3 };
+            MathResponse mathResponse = await _calculatorOrCacheService.DivideAsync(request);
+            Assert.Equal(4, mathResponse.Result);
         }
 
         [Fact]
-        public void Divide_ByZero_ShouldThrowException()
+        public async Task Divide_ByZero_ShouldThrowExceptionAsync()
         {
-            Assert.Throws<DivideByZeroException>(() => _cacheService.Divide(5, 0));
+            MathRequest request = new MathRequest() { Operation = OperationEnum.DivideEnum, X = 5, Y = 0 };
+            await Assert.ThrowsAsync<DivideByZeroException>(async () => await _calculatorOrCacheService.DivideAsync(request) );
         }
     }
 }
